@@ -1,12 +1,13 @@
 const Sequelize = require('sequelize');
 const DatabaseConnectionConsts = require('../configs/consts/databaseConnection');
 
-const ProductDTO = require('../DTO/productDTO');
-const ProductRepository = require('../repositories/productRepository');
+const ProductDTO = require('../modules/products/dto/productDTO');
+const ProductRepository = require('../modules/products/repositories/productRepository');
 
 class Database {
 
     _connection;
+    productRepository;
 
     constructor() {
         const {database, host, dialect, pass, user} = new DatabaseConnectionConsts();
@@ -27,23 +28,19 @@ class Database {
 
     async startConnection() {
         try {
-            const result = await this._connection.authenticate();
-            console.log("() => Connected <= ()");
+            await this._connection.authenticate();
+            console.log("Database Connected");
         } catch (error) {
             console.log(error);
         }
     }
 
-    async initDatabase() {
-        const productRepoistory = new ProductRepository(this.getConnection());
-        const products = await productRepoistory.find();
+    initDatabase() {
+        this.producRepository = new ProductRepository(this.getConnection());
+    }
 
-        const productDTO = ProductDTO.toProductDTO(products[0]);
-        // const productModel = new Product(this.getConnection());
-        //
-        // const products = await productModel.instance().findAll();
-
-        console.log(productDTO);
+    getProducRepository() {
+        return this.producRepository;
     }
 }
 

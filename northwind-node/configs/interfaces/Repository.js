@@ -19,7 +19,7 @@ class Repository {
     }
 
     async findOne(id) {
-        return await this._model.findOne(id)
+        return await this._model.findByPk(id)
     }
 }
 

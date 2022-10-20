@@ -61,6 +61,16 @@ class ProductDTO {
             discontinued
         )
     }
+
+    static manyToProductDTO(productsModel) {
+        const productsDTO = [];
+        for(let iterator = 0; iterator < productsModel.length; iterator++) {
+            productsDTO.push(ProductDTO.toProductDTO(productsModel[iterator]));
+        }
+
+        console.log(productsModel);
+        return productsDTO;
+    }
 }
 
 module.exports = ProductDTO;

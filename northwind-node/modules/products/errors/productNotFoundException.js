@@ -1,6 +1,8 @@
-class ProductNotFoundException extends Error {
+const NotFoundException = require('../../../errors/notFoundException')
+
+class ProductNotFoundException extends NotFoundException {
     constructor() {
-        super("Produto não encontrado");
+        super("Produto");
     }
 }
 

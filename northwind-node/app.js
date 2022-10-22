@@ -1,24 +1,30 @@
-const express = require('express')
-const Database = require('./database/database')
-const cors = require('cors')
-const Router = require('./routes')
+const express = require('express');
+const Database = require('./database/database');
+const cors = require('cors');
+const Router = require('./routes');
+const ErrorMiddleware = require('./middlewares/ErrorMiddleware');
+require('express-async-errors');
 
 class App {
 
-    app;
-
-    constructor()  {
+    constructor() {
         this.app = express();
+        this.initProject();
+    }
 
-        const database = new Database();
-        database.startConnection();
-        database.initDatabase();
-
-        const router = new Router(database)
+    async initProject() {
+        const router = new Router(await this.initDatabase());
 
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use(router.getRoutes());
+        this.app.use(new ErrorMiddleware().handle);
+    }
+
+    async initDatabase() {
+        const database = new Database();
+        await database.startConnection();
+        return database;
     }
 
     getApp() {

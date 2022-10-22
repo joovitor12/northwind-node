@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize');
 
 class Product {
-    _product;
+    _productmModel;
     connection;
 
     constructor(connection) {
@@ -9,12 +9,12 @@ class Product {
         this.createModel();
     }
 
-    instance() {
-        return this._product;
+    getModel() {
+        return this._productmModel;
     }
 
     createModel() {
-        this._product = this.connection
+        this._productmModel = this.connection
             .define(
                 'product',
                 {

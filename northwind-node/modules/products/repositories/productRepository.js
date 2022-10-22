@@ -8,7 +8,7 @@ class ProductsRepository extends Repository {
     constructor(connection) {
         const productModel = new Product(connection);
         super(productModel);
-        this.repository = productModel.instance();
+        this.repository = productModel.getModel();
     }
 }
 

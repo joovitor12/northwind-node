@@ -1,36 +1,37 @@
-const FindProductService = require('../../products/services/findProductService')
-const FindProductsService = require('../../products/services/findProductsService')
-
 class ProductController {
 
-    productRepository;
-
-    constructor(productRepository) {
-        this.productRepository = productRepository;
+    constructor(
+        findProductsUseCase,
+        findProductUseCase,
+        createProductUseCase,
+        deleteProductUseCase,
+        updateProductUseCase
+    ) {
+        this.findProductsUseCase = findProductsUseCase;
+        this.findProductUseCase = findProductUseCase;
+        this.createProductUseCase = createProductUseCase;
+        this.deleteProductUseCase = deleteProductUseCase;
+        this.updateProductUseCase = updateProductUseCase;
     }
 
-    async findProducts() {
-        const findProductsService = new FindProductsService(this.productRepository);
-
-        return await findProductsService.execute();
+    async find() {
+        return await this.findProductsUseCase.execute();
     }
 
-    async createProduct() {
-
+    async create(product) {
+        return await this.createProductUseCase.execute(product);
     }
 
-    async findProduct(id) {
-        const findProductService = new FindProductService(this.productRepository);
-
-        return await findProductService.execute(id);
+    async findOne(id) {
+        return await this.findProductUseCase.execute(id);
     }
 
-    async deleteProduct() {
-
+    async delete(id) {
+        return await this.deleteProductUseCase.execute(id);
     }
 
-    async updateProduct() {
-
+    async update(id, item) {
+        return await this.updateProductUseCase.execute(id, item);
     }
 }
 

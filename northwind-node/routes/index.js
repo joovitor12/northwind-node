@@ -18,7 +18,7 @@ class AppRouter {
     }
 
     createProductRouter() {
-        const productRouter = new ProductRouter(this.database.getProducRepository());
+        const productRouter = new ProductRouter(this.database);
         this.routes.use('/product', productRouter.getRoutes())
     }
 

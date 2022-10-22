@@ -1,6 +1,6 @@
 const ProductDTO = require('../dto/productDTO')
 
-class FindProductsService {
+class FindProductsUseCase {
 
     productRepository;
 
@@ -18,4 +18,4 @@ class FindProductsService {
     }
 }
 
-module.exports = FindProductsService;
+module.exports = FindProductsUseCase;

@@ -1,7 +1,8 @@
 const ProductNotFoundException = require('../errors/productNotFoundException');
-const ProductDTO = require('../dto/productDTO')
+const MissingDataProduct = require('../errors/MissingDataProductException');
+const ProductDTO = require('../dto/productDTO');
 
-class FindProductService {
+class FindProductUseCase {
 
     productRepository;
 
@@ -10,6 +11,10 @@ class FindProductService {
     }
 
     async execute(id) {
+        if(id == null) {
+            throw new MissingDataProduct();
+        }
+
         const product = await this.productRepository.findOne(id);
 
         if(product == null) {
@@ -18,9 +23,8 @@ class FindProductService {
 
         const productDTO = ProductDTO.toProductDTO(product);
 
-        console.log(productDTO);
         return productDTO;
     }
 }
 
-module.exports = FindProductService;
+module.exports = FindProductUseCase;

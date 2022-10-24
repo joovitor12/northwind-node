@@ -1,8 +1,34 @@
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize');
+const DatabaseUnavailable = require('../errors/DatabaseUnavailable');
+const DatabaseConnectionConsts = require('../configs/consts/databaseConnection');
 
-const conn = new Sequelize('northwind', 'root', '17060220a', {
-    host: 'localhost',
-    dialect: 'mysql'
-})
+class Database {
 
-module.exports = conn;
+    constructor() {
+        const {database, host, dialect, pass, user} = new DatabaseConnectionConsts();
+
+        this._connection = new Sequelize(
+            database,
+            user,
+            pass,
+            {
+                host,
+                dialect
+            });
+    }
+
+    getConnection() {
+        return this._connection;
+    }
+
+    async startConnection() {
+        try {
+            await this._connection.authenticate();
+            console.log("Database Connected");
+        } catch (error) {
+            throw new DatabaseUnavailable();
+        }
+    }
+}
+
+module.exports = Database;

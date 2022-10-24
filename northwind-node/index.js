@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const conn = require('./database/database')
+const Supplier = require('./models/supplier')
 conn
     .authenticate()
     .then(() => {

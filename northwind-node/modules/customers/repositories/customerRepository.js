@@ -1,4 +1,4 @@
-const Repository = require('../../../configs/interfaces/Repository')
+const Repository = require('../../../configs/implementations/Repository')
 const Customer = require('../../../models/customers')
 
 class CustomersRepository extends Repository {
@@ -8,6 +8,10 @@ class CustomersRepository extends Repository {
         const customerModel = new Customer(connection)
         super(customerModel)
         this.repository = customerModel.getModel()
+    }
+
+    async findByCountry(country) {
+        return await this.repository.sequelize.query(`call nome_procedimento(\"${country}\")`);
     }
 }
 

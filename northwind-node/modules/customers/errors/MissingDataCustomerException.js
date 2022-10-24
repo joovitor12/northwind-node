@@ -1,8 +1,8 @@
 const MissingData = require('../../../errors/missingData');
 
 class MissingDataCustomerException extends MissingData {
-    constructor() {
-        super("Customer");
+    constructor(data) {
+        super("Customer" + data != null ? ": " + data : "");
     }
 }
 

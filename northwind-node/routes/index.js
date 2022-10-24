@@ -16,6 +16,7 @@ class AppRouter {
 
     createRoutes() {
         this.createProductRouter();
+        this.createCustomerRouter();
     }
 
     createProductRouter() {

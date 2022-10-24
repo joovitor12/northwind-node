@@ -51,7 +51,6 @@ CREATE TABLE Customer (
   ,PRIMARY KEY (CustId)
   ) ENGINE=INNODB;
 
-
 CREATE TABLE CustCustDemographics (
   custId INT NOT NULL
   ,customerTypeId INT NOT NULL
@@ -61,9 +60,6 @@ CREATE TABLE CustCustDemographics (
     ,FOREIGN KEY (customerTypeId)
       REFERENCES CustomerDemographics(customerTypeId)
   ) ENGINE=INNODB;
-
-
-
 
 CREATE TABLE Employee (
   employeeId INT AUTO_INCREMENT NOT NULL
@@ -116,8 +112,6 @@ CREATE TABLE Supplier (
   ,PRIMARY KEY (supplierId)
   ) ENGINE=INNODB;
 
-
-
 CREATE TABLE Product (
   productId INT AUTO_INCREMENT NOT NULL
   ,productName VARCHAR(40) NOT NULL
@@ -136,17 +130,12 @@ CREATE TABLE Product (
       REFERENCES Category(categoryId)
   ) ENGINE=INNODB;
 
-
-
 CREATE TABLE Shipper (
   shipperId INT AUTO_INCREMENT NOT NULL
   ,companyName VARCHAR(40) NOT NULL
   ,phone VARCHAR(44) NULL
   ,PRIMARY KEY (ShipperId)
   ) ENGINE=INNODB;
-
-
-
 
 CREATE TABLE SalesOrder (
   orderId INT AUTO_INCREMENT NOT NULL
@@ -171,8 +160,6 @@ CREATE TABLE SalesOrder (
 
   ) ENGINE=INNODB;
 
-
-
 CREATE TABLE OrderDetail (
    orderDetailId INT AUTO_INCREMENT NOT NULL,
    orderId INT NOT NULL
@@ -187,10 +174,7 @@ CREATE TABLE OrderDetail (
       REFERENCES Product(productId) 
   ) ENGINE=INNODB;
 
-
 -- Populate Employess table
-
-
 
 INSERT INTO Employee(employeeid, lastname, firstname, title, titleofcourtesy, birthdate, hiredate, address, city, region, postalcode, country, phone, mgrid)
   VALUES(1, N'Davis', N'Sara', N'CEO', N'Ms.', '1958-12-08 00:00:00.000', '2002-05-01 00:00:00.000', N'7890 - 20th Ave. E., Apt. 2A', N'Seattle', N'WA', N'10003', N'USA', N'(206) 555-0101', NULL);

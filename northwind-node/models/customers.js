@@ -17,7 +17,7 @@ class Customer {
         this._customerModel = this.connection
             .define(
                 'customer', {
-                    customerId: {
+                    custId: {
                         type: DataTypes.INTEGER,
                         primaryKey: true,
                         allowNull: false,

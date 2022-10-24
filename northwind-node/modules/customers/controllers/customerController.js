@@ -5,14 +5,15 @@ class CustomerController {
         findCustomerUseCase,
         createCustomerUseCase,
         deleteCustomerUseCase,
-        updateCustomerUseCase
+        updateCustomerUseCase,
+        findCustomerByCountryUseCase
     ) {
         this.findCustomersUseCase = findCustomersUseCase;
         this.findCustomerUseCase = findCustomerUseCase;
         this.createCustomerUseCase = createCustomerUseCase;
         this.deleteCustomerUseCase = deleteCustomerUseCase;
         this.updateCustomerUseCase = updateCustomerUseCase;
-
+        this.findCustomerByCountryUseCase = findCustomerByCountryUseCase;
     }
 
     async find() {
@@ -33,6 +34,10 @@ class CustomerController {
 
     async update(id, customer) {
         return await this.updateCustomerUseCase.execute(id, customer);
+    }
+
+    async findByCountry(country) {
+        return await this.findCustomerByCountryUseCase.execute(country);
     }
 
 }

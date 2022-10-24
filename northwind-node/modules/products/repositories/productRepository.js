@@ -1,4 +1,4 @@
-const Repository = require('../../../configs/interfaces/Repository');
+const Repository = require('../../../configs/implementations/Repository');
 const Product = require("../../../models/product");
 
 class ProductsRepository extends Repository {

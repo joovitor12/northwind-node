@@ -1,5 +1,5 @@
 class CustomerDTO {
-    customerId;
+    custId;
     companyName;
     contactName;
     contactTitle;
@@ -12,7 +12,7 @@ class CustomerDTO {
     fax;
 
     constructor(
-        customerId,
+        custId,
         companyName,
         contactName,
         contactTitle,
@@ -24,7 +24,7 @@ class CustomerDTO {
         phone,
         fax
     ) {
-        this.customerId = customerId;
+        this.custId = custId;
         this.companyName = companyName;
         this.contactName = contactName;
         this.contactTitle = contactTitle;
@@ -38,13 +38,42 @@ class CustomerDTO {
     }
 
     static toCustomerDTO(customerModel) {
-        const customersDTO = [];
-        for (let i = 0; i < customerModel.length; i++) {
-            customersDTO.push(CustomerDTO.toCustomerDTO(customersDTO[i]));
+        const {
+            custId,
+            companyName,
+            contactName,
+            contactTitle,
+            address,
+            city,
+            region,
+            postalCode,
+            country,
+            phone,
+            fax
+        } = customerModel;
+
+        return new CustomerDTO(
+            custId,
+            companyName,
+            contactName,
+            contactTitle,
+            address,
+            city,
+            region,
+            postalCode,
+            country,
+            phone,
+            fax)
+    }
+
+    static manyToCustomerDTO(productsModel) {
+        const productsDTO = [];
+        for (let iterator = 0; iterator < productsModel.length; iterator++) {
+            productsDTO.push(CustomerDTO.toCustomerDTO(productsModel[iterator]));
         }
 
-        console.log(customerModel);
-        return customersDTO;
+        console.log(productsModel);
+        return productsDTO;
     }
 }
 

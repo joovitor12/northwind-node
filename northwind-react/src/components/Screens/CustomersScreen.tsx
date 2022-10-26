@@ -1,15 +1,15 @@
 import { Flex, Heading } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { useGetProducts } from "../../configs";
+import { useGetCustomers } from "../../configs";
+import { CustomerCard } from "../CustomerCard";
 import { Navbar } from "../Navbar";
-import { ProductCard } from "../ProductCard";
 
-export const ProductScreen = () => {
-  const { data: products, refetch: refetchProducts } = useGetProducts();
+export const CustomersScreen = () => {
+  const { data: customers, refetch: customersRefetch } = useGetCustomers();
 
   useEffect(() => {
-    refetchProducts();
-  }, [refetchProducts]);
+    customersRefetch();
+  }, [customersRefetch]);
 
   return (
     <Flex
@@ -23,7 +23,7 @@ export const ProductScreen = () => {
     >
       <Navbar />
       <Heading color="brand.700" m="1rem">
-        Products
+        Customers
       </Heading>
       <Flex
         minH="100%"
@@ -33,8 +33,8 @@ export const ProductScreen = () => {
         align="center"
         flexWrap="wrap"
       >
-        {products?.map((product) => (
-          <ProductCard product={product} key={product.productId} />
+        {customers?.map((customer) => (
+          <CustomerCard customer={customer} key={customer.custId} />
         ))}
       </Flex>
     </Flex>

@@ -7,10 +7,17 @@ const UpdateProductUseCase = require('../useCases/updateProductUseCase');
 const ProductRepository = require('../repositories/productRepository');
 const ProductController = require('../controllers/productController');
 
+const Supplier = require('../../../models/supplier');
+const Category = require('../../../models/category');
+
 class ProductServiceFactory {
 
     constructor(connection) {
-        this.productRepository = new ProductRepository(connection);
+        this.productRepository = new ProductRepository(
+            connection,
+            new Supplier(),
+            new Category()
+        );
     }
 
     createProductController() {

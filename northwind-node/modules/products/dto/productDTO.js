@@ -1,3 +1,6 @@
+const SupplierDTO = require('../../supplier/DTO/supplierDTO');
+const CategoryDTO = require('../../category/DTO/categoryDTO');
+
 class ProductDTO {
     productId;
     productName;
@@ -46,13 +49,13 @@ class ProductDTO {
             unitsOnOrder,
             reorderLevel,
             discontinued
-        } = productModel.dataValues;
+        } = productModel;
 
         return new ProductDTO(
             productId,
             productName,
-            supplier,
-            category,
+            SupplierDTO.toSupplierDTO(supplier),
+            CategoryDTO.toCategoryDTO(category),
             quantityPerUnit,
             unitPrice,
             unitsInStock,

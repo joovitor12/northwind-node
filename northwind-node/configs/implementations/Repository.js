@@ -24,11 +24,7 @@ class Repository {
     }
 
     async find() {
-        return await this._model.findAll()
-    }
-
-    async findOne(id) {
-        return await this._model.findByPk(id)
+        return await this._model.findAll();
     }
 
     async update(id, item) {

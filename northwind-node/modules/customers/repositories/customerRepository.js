@@ -5,9 +5,10 @@ class CustomersRepository extends Repository {
     repository;
 
     constructor(connection) {
-        const customerModel = new Customer(connection)
-        super(customerModel)
-        this.repository = customerModel.getModel()
+        const customerModel = new Customer();
+        customerModel.createModel(connection);
+        super(customerModel);
+        this.repository = customerModel.getModel();
     }
 
     async findByCountry(country) {

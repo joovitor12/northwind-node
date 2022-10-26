@@ -1,5 +1,5 @@
-class CustomerDTO {
-    custId;
+class SupplierDTO {
+    supplierId;
     companyName;
     contactName;
     contactTitle;
@@ -9,10 +9,12 @@ class CustomerDTO {
     postalCode;
     country;
     phone;
+    email;
     fax;
+    homePage;
 
     constructor(
-        custId,
+        supplierId,
         companyName,
         contactName,
         contactTitle,
@@ -22,9 +24,11 @@ class CustomerDTO {
         postalCode,
         country,
         phone,
-        fax
+        email,
+        fax,
+        homePage
     ) {
-        this.custId = custId;
+        this.supplierId = supplierId;
         this.companyName = companyName;
         this.contactName = contactName;
         this.contactTitle = contactTitle;
@@ -34,12 +38,14 @@ class CustomerDTO {
         this.postalCode = postalCode;
         this.country = country;
         this.phone = phone;
+        this.email = email;
         this.fax = fax;
+        this.homePage = homePage
     }
 
-    static toCustomerDTO(customerModel) {
+    static toSupplierDTO(supplierModel) {
         const {
-            custId,
+            supplierId,
             companyName,
             contactName,
             contactTitle,
@@ -49,11 +55,13 @@ class CustomerDTO {
             postalCode,
             country,
             phone,
-            fax
-        } = customerModel;
+            email,
+            fax,
+            homePage
+        } = supplierModel;
 
-        return new CustomerDTO(
-            custId,
+        return new SupplierDTO(
+            supplierId,
             companyName,
             contactName,
             contactTitle,
@@ -63,18 +71,20 @@ class CustomerDTO {
             postalCode,
             country,
             phone,
-            fax)
+            email,
+            fax,
+            homePage);
     }
 
-    static manyToCustomerDTO(customerModel) {
+    static manyToCustomerDTO(supplierModel) {
         const productsDTO = [];
-        for (let iterator = 0; iterator < customerModel.length; iterator++) {
-            productsDTO.push(CustomerDTO.toCustomerDTO(customerModel[iterator]));
+        for (let iterator = 0; iterator < supplierModel.length; iterator++) {
+            productsDTO.push(SupplierDTO.toSupplierDTO(supplierModel[iterator]));
         }
 
-        console.log(customerModel);
+        console.log(supplierModel);
         return productsDTO;
     }
 }
 
-module.exports = CustomerDTO;
+module.exports = SupplierDTO;

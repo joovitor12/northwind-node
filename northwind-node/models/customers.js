@@ -2,19 +2,13 @@ const { DataTypes } = require('sequelize');
 
 class Customer {
     _customerModel;
-    connection;
-
-    constructor(connection) {
-        this.connection = connection;
-        this.createModel();
-    }
 
     getModel() {
         return this._customerModel;
     }
 
-    createModel() {
-        this._customerModel = this.connection
+    createModel(connection) {
+        this._customerModel =connection
             .define(
                 'customer', {
                     custId: {

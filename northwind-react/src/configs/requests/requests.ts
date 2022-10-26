@@ -11,11 +11,6 @@ export const getProducts = async (): Promise<void> => {
   return response.data;
 };
 
-export const deleteProduct = async ({ id }: { id: number }): Promise<void> => {
-  const response = await api.delete(`/product/${id}`);
-  return response.data;
-};
-
 export const postCustomer = async (data: CustomerProps): Promise<void> => {
   const response = await api.post("/customer", data);
   return response.data;

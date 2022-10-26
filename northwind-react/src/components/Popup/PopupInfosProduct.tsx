@@ -6,7 +6,6 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Text,
@@ -14,17 +13,10 @@ import {
 } from "@chakra-ui/react";
 
 import { RiStarSmileFill } from "react-icons/ri";
-import { useDeleteProduct } from "../../configs";
 import { ProductProps } from "../../types";
 
 export const PopupInfosProduct = ({ product }: { product: ProductProps }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { deleteProductMutation, deleteProductLoading } = useDeleteProduct();
-
-  const handleDeleteProduct = () => {
-    deleteProductMutation({ id: product.productId ?? 0 });
-    onClose();
-  };
 
   return (
     <>
@@ -58,23 +50,6 @@ export const PopupInfosProduct = ({ product }: { product: ProductProps }) => {
               <Text>Discontinued: {product.discontinued || "No data"}</Text>
             </Flex>
           </ModalBody>
-          <ModalFooter
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Button
-              bg="red"
-              color="white"
-              _hover={{}}
-              _active={{}}
-              _focus={{}}
-              isLoading={deleteProductLoading}
-              onClick={handleDeleteProduct}
-            >
-              Delete {product.productName}
-            </Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>

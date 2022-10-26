@@ -10,6 +10,22 @@ export const CreateProductSchema = yup.object().shape({
     .string()
     .matches(/^[0-9]+$/, "Must be only digits")
     .required("Empty label!"),
+  quantityPerUnit: yup
+    .string()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .required("Empty label!"),
+  unitsInStock: yup
+    .string()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .required("Empty label!"),
+  unitsOnOrder: yup
+    .string()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .required("Empty label!"),
+  reorderLevel: yup
+    .string()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .required("Empty label!"),
 });
 
 export const CreateCustomerSchema = yup.object().shape({

@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { InputForm } from "../Input";
 import { CreateCustomerSchema } from "../../assets";
 import { useEditCustomer, useGetCustomer } from "../../configs";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 export const EditCustomerScreen = () => {
   const {
@@ -30,7 +30,7 @@ export const EditCustomerScreen = () => {
 
   const submitProductForm = async (data: CustomerProps) => {
     await editCustomerMutation({
-      id: Number(id)|| 0,
+      id: Number(id) || 0,
       data: {
         companyName: data.companyName,
         contactName: data.contactName,
@@ -47,7 +47,7 @@ export const EditCustomerScreen = () => {
     navigate("/customers");
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     reset({
       companyName: customer?.companyName,
       contactName: customer?.contactName,
@@ -60,7 +60,7 @@ export const EditCustomerScreen = () => {
       phone: customer?.phone,
       fax: customer?.fax,
     });
-  }, []);
+  }, [customer]);
 
   return (
     <Flex

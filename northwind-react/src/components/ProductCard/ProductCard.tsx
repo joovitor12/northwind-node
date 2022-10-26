@@ -4,8 +4,12 @@ import { ProductProps } from "../../types";
 import { RiStarSmileFill } from "react-icons/ri";
 import { SiCashapp } from "react-icons/si";
 import { BsFillPlusCircleFill } from "react-icons/bs";
+import { useCart } from "../../configs";
+import { PopupInfosProduct } from "../Popup";
 
 export const ProductCard = ({ product }: { product: ProductProps }) => {
+  const { contentCart, setContentCart } = useCart();
+
   return (
     <Flex
       bg="brand.800"
@@ -38,6 +42,7 @@ export const ProductCard = ({ product }: { product: ProductProps }) => {
           _hover={{ color: "brand.600" }}
           _active={{}}
           letterSpacing={0.8}
+          onClick={() => setContentCart([...contentCart, product])}
           rightIcon={
             <Icon as={BsFillPlusCircleFill} color="brand.400" fontSize="2xl" />
           }
@@ -45,6 +50,7 @@ export const ProductCard = ({ product }: { product: ProductProps }) => {
           <Text>Add to cart</Text>
         </Button>
       </Flex>
+      <PopupInfosProduct product={product} />
     </Flex>
   );
 };

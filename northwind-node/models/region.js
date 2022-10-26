@@ -1,33 +1,36 @@
 const {DataTypes} = require('sequelize')
 
-class CustomerDemographics {
-    _customerDemographicsModel;
+class Region {
+    _regionModel;
 
     getModel() {
-        return this._customerDemographicsModel
+        return this._regionModel
     }
 
     createModel(connection) {
-        this._customerDemographicsModel = connection
+        this._regionModel = connection
             .define(
-                'customerdemographics', {
-                    customerTypeId: {
+                'region', {
+                    regionId: {
                         type: DataTypes.INTEGER,
                         primaryKey: true,
                         allowNull: false,
                         autoIncrement: true
                     },
-                    customerDesc: {
-                        type: DataTypes.TEXT,
+                    regionDescription: {
+                        type: DataTypes.STRING,
+                        range: 50,
                         allowNull: false
                     }
                 }, {
-                    tableName: "customerdemographics",
+                    tableName: "region",
                     createdAt: false,
                     updatedAt: false
                 }
-            )
+            );
+
+        return this._regionModel;
     }
 }
 
-module.exports = CustomerDemographics;
+module.exports = Region;

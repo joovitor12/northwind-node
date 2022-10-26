@@ -72,7 +72,9 @@ class Customer {
                     createdAt: false,
                     updatedAt: false
                 }
-            )
+            );
+
+        return this._customerModel;
     }
 }
 

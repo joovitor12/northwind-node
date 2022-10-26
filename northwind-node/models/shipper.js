@@ -1,38 +1,41 @@
 const {DataTypes} = require('sequelize')
-const Region = require("./region");
 
-class EmployeeTerritory {
-    _employeeTerritory
-
+class Shipper {
+    _shipperModel;
 
     getModel() {
-        return this._employeeTerritory
+        return this._shipperModel
     }
 
     createModel(connection) {
-        this._employeeTerritory = connection
+        this._shipperModel = connection
             .define(
-                'employeeterritory', {
-                    employeeId: {
+                'shipper', {
+                    shipperId: {
                         type: DataTypes.INTEGER,
                         primaryKey: true,
                         allowNull: false,
                         autoIncrement: true
                     },
-                    territoryId: {
+                    companyName: {
                         type: DataTypes.STRING,
-                        primaryKey: true,
+                        range: 40,
                         allowNull: false
+                    },
+                    phone: {
+                        type: DataTypes.STRING,
+                        range: 44,
+                        allowNull: true
                     }
                 }, {
-                    tableName: 'employeeterritory',
+                    tableName: "shipper",
                     createdAt: false,
                     updatedAt: false
                 }
             );
 
-        return this._employeeTerritory;
+        return this._shipperModel;
     }
 }
 
-module.exports = EmployeeTerritory
+module.exports = Shipper;

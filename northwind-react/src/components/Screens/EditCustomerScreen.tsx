@@ -48,6 +48,7 @@ export const EditCustomerScreen = () => {
   };
 
   useLayoutEffect(() => {
+    window.scrollTo(0, 0);
     reset({
       companyName: customer?.companyName,
       contactName: customer?.contactName,

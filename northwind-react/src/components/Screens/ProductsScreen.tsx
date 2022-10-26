@@ -8,6 +8,7 @@ export const ProductScreen = () => {
   const { data: products, refetch: refetchProducts } = useGetProducts();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     refetchProducts();
   }, [refetchProducts]);
 

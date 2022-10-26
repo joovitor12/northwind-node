@@ -7,7 +7,13 @@ import {
 } from "react-query";
 
 import { CustomerProps } from "../../types";
-import { deleteCustomer, getCustomers, postCustomer } from "../requests";
+import {
+  deleteCustomer,
+  editCustomer,
+  getCustomer,
+  getCustomers,
+  postCustomer,
+} from "../requests";
 
 type UseCreateCustomerProps = {
   createCustomerMutation: UseMutateAsyncFunction<
@@ -21,6 +27,21 @@ type UseCreateCustomerProps = {
 
 type UseGetCustomersOptions = {
   config?: UseQueryOptions<void, unknown, CustomerProps[], "customers">;
+};
+
+type UseGetCustomerOptions = {
+  config?: UseQueryOptions<any, unknown, CustomerProps, "customer">;
+  id: number;
+};
+
+type UseEditCustomerProps = {
+  editCustomerMutation: UseMutateAsyncFunction<
+    void,
+    unknown,
+    { id: number; data: CustomerProps },
+    unknown
+  >;
+  editCustomerLoading: boolean;
 };
 
 type UseDeleteCustomerProps = {
@@ -63,6 +84,36 @@ export const useCreateCustomer = (): UseCreateCustomerProps => {
 
 export const useGetCustomers = ({ config }: UseGetCustomersOptions = {}) => {
   return useQuery("customers", getCustomers, config);
+};
+
+export const useGetCustomer = ({ config, id }: UseGetCustomerOptions) => {
+  return useQuery("customer", () => getCustomer({ id }), config);
+};
+
+export const useEditCustomer = (): UseEditCustomerProps => {
+  const toast = useToast();
+  const { mutateAsync: editCustomerMutation, isLoading: editCustomerLoading } =
+    useMutation({
+      mutationFn: editCustomer,
+      onError: () => {
+        toast({
+          title: "There was an error on edit the customer.",
+          duration: 3000,
+          isClosable: true,
+          status: "error",
+        });
+      },
+      onSuccess: () => {
+        toast({
+          title: "Customer successfully edited!",
+          duration: 3000,
+          isClosable: true,
+          status: "success",
+        });
+      },
+    });
+
+  return { editCustomerMutation, editCustomerLoading };
 };
 
 export const useDeleteCustomer = (): UseDeleteCustomerProps => {

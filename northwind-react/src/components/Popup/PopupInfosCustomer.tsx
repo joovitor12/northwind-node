@@ -13,6 +13,8 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { BsFillPersonFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+
 import { useDeleteCustomer } from "../../configs";
 import { CustomerProps } from "../../types";
 
@@ -23,6 +25,8 @@ export const PopupInfosCustomer = ({
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { deleteCustomerMutation, deleteCustomerLoading } = useDeleteCustomer();
+
+  const navigate = useNavigate();
 
   const handleDeleteCustomer = () => {
     deleteCustomerMutation({ id: customer.custId ?? 0 });
@@ -35,7 +39,7 @@ export const PopupInfosCustomer = ({
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
-        <ModalContent bg="brand.900" w="50%" h="70%">
+        <ModalContent bg="brand.900" w="50%" minH="70%" h="auto">
           <ModalHeader color="brand.700">
             {customer.companyName} Infos
           </ModalHeader>
@@ -65,7 +69,19 @@ export const PopupInfosCustomer = ({
             display="flex"
             justifyContent="center"
             alignItems="center"
+            flexDirection="column"
           >
+            <Button
+              bg="yellow"
+              color="brand.900"
+              _hover={{}}
+              _active={{}}
+              _focus={{}}
+              onClick={() => navigate(`/edit-customer/${customer.custId}`)}
+              mb="1rem"
+            >
+              Edit {customer.companyName}
+            </Button>
             <Button
               bg="red"
               color="white"

@@ -7,7 +7,7 @@ import {
 } from "react-query";
 
 import { ProductProps } from "../../types";
-import { deleteProduct, getProducts, postProduct } from "../requests";
+import { getProducts, postProduct } from "../requests";
 
 type UseCreateProductProps = {
   createProductMutation: UseMutateAsyncFunction<
@@ -21,16 +21,6 @@ type UseCreateProductProps = {
 
 type UseGetProductOptions = {
   config?: UseQueryOptions<void, unknown, ProductProps[], "products">;
-};
-
-type UseDeleteProductProps = {
-  deleteProductMutation: UseMutateAsyncFunction<
-    void,
-    unknown,
-    { id: number } | any,
-    unknown
-  >;
-  deleteProductLoading: boolean;
 };
 
 export const useCreateProduct = (): UseCreateProductProps => {
@@ -63,32 +53,4 @@ export const useCreateProduct = (): UseCreateProductProps => {
 
 export const useGetProducts = ({ config }: UseGetProductOptions = {}) => {
   return useQuery("products", getProducts, config);
-};
-
-export const useDeleteProduct = (): UseDeleteProductProps => {
-  const toast = useToast();
-  const {
-    mutateAsync: deleteProductMutation,
-    isLoading: deleteProductLoading,
-  } = useMutation({
-    mutationFn: deleteProduct,
-    onError: () => {
-      toast({
-        title: "There was an error on delete the product.",
-        duration: 3000,
-        isClosable: true,
-        status: "error",
-      });
-    },
-    onSuccess: () => {
-      toast({
-        title: "Product successfully deleted!",
-        duration: 3000,
-        isClosable: true,
-        status: "success",
-      });
-    },
-  });
-
-  return { deleteProductMutation, deleteProductLoading };
 };

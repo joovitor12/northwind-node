@@ -1,4 +1,5 @@
 import * as yup from "yup";
+
 export const CreateProductSchema = yup.object().shape({
   discontinued: yup
     .string()
@@ -7,6 +8,22 @@ export const CreateProductSchema = yup.object().shape({
     .required("Empty label!"),
   productName: yup.string().required("Empty label!"),
   unitPrice: yup
+    .string()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .required("Empty label!"),
+  quantityPerUnit: yup
+    .string()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .required("Empty label!"),
+  unitsInStock: yup
+    .string()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .required("Empty label!"),
+  unitsOnOrder: yup
+    .string()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .required("Empty label!"),
+  reorderLevel: yup
     .string()
     .matches(/^[0-9]+$/, "Must be only digits")
     .required("Empty label!"),

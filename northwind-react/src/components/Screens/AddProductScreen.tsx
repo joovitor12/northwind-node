@@ -25,11 +25,11 @@ export const AddProductScreen = () => {
   const submitProductForm = async (data: ProductProps) => {
     await createProductMutation({
       productName: data.productName,
-      quantityPerUnit: 1,
+      quantityPerUnit: data.quantityPerUnit,
       unitPrice: data.unitPrice,
-      unitsInStock: 1,
-      unitsOnOrder: 1,
-      reorderLevel: 1,
+      unitsInStock: data.unitsInStock,
+      unitsOnOrder: data.unitsOnOrder,
+      reorderLevel: data.reorderLevel,
       discontinued: data.discontinued,
     });
     navigate("/");
@@ -76,8 +76,36 @@ export const AddProductScreen = () => {
           color="white"
         />
         <InputForm
+          register={register("quantityPerUnit")}
+          error={errors.quantityPerUnit}
+          placeholder="Quantity Per Unit"
+          type="text"
+          color="white"
+        />
+        <InputForm
           register={register("unitPrice")}
           error={errors.unitPrice}
+          placeholder="Unit Price"
+          type="text"
+          color="white"
+        />
+        <InputForm
+          register={register("unitsInStock")}
+          error={errors.unitsInStock}
+          placeholder="Units in Stock"
+          type="text"
+          color="white"
+        />
+        <InputForm
+          register={register("unitsOnOrder")}
+          error={errors.unitsOnOrder}
+          placeholder="Unit Price"
+          type="text"
+          color="white"
+        />
+        <InputForm
+          register={register("reorderLevel")}
+          error={errors.reorderLevel}
           placeholder="Unit Price"
           type="text"
           color="white"
@@ -86,7 +114,7 @@ export const AddProductScreen = () => {
           title="Login"
           type="submit"
           w="50%"
-          mt="2rem"
+          m="2rem 0"
           color="white"
           bg="brand.700"
           h="3.5rem"

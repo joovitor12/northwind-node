@@ -71,7 +71,7 @@ class SalesOrder {
                         range: 15,
                         allowNull: true
                     },
-                    shipPostaCode: {
+                    shipPostalCode: {
                         type: DataTypes.STRING,
                         range: 10,
                         allowNull: true

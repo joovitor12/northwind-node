@@ -14,6 +14,10 @@ class CustomersRepository extends Repository {
     async findByCountry(country) {
         return await this.repository.sequelize.query(`call nome_procedimento(\"${country}\")`);
     }
+
+    async findOne(id) {
+        return await this.repository.findByPk(id);
+    }
 }
 
 module.exports = CustomersRepository;

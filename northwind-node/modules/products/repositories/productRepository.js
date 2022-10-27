@@ -15,6 +15,7 @@ class ProductsRepository extends Repository {
         this.categoryModel = categoryModel.createModel(connection);
     }
 
+
     async findOne(id) {
         return await this._model.findByPk(id,
             {

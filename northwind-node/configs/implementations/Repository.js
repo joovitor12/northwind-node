@@ -1,4 +1,4 @@
-const ProductNotFoundException = require("../../modules/products/errors/productNotFoundException");
+const NotFoundException = require("../../errors/notFoundException");
 
 class Repository {
     _model;
@@ -16,7 +16,7 @@ class Repository {
         const itemFinded = await this._model.findByPk(id);
 
         if(itemFinded == null) {
-            throw new ProductNotFoundException();
+            throw new NotFoundException(this._model.tableName);
         }
 
         await itemFinded.destroy();

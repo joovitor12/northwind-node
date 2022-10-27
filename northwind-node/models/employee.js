@@ -89,7 +89,7 @@ class Employee {
                         range: 40
                     },
                     email: {
-                        type: DataTypes.EMAIL,
+                        type: DataTypes.TEXT,
                         allowNull: false
                     },
                     photo: {

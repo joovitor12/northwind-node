@@ -30,8 +30,8 @@ class Shipper {
                 }, {
                     tableName: "shipper",
                     createdAt: false,
-                    updatedAt: false
-                }
+                    updatedAt: false,
+                },
             );
 
         return this._shipperModel;

@@ -35,7 +35,7 @@ export const AddCustomerScreen = () => {
       phone: data.phone,
       fax: data.fax,
     });
-    navigate("/");
+    navigate("/customers");
   };
 
   return (

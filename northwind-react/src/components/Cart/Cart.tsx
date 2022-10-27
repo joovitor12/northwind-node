@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Drawer,
   DrawerBody,
@@ -17,7 +16,7 @@ import {
 import { useRef, useState } from "react";
 import { BsCart4 } from "react-icons/bs";
 import { useCart, useGetCustomers } from "../../configs";
-import { CustomerProps, ProductProps } from "../../types";
+import { ProductProps } from "../../types";
 import { CartProduct } from "../CartProduct";
 
 export const Cart = () => {

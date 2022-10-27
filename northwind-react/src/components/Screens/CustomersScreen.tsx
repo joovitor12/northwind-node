@@ -10,7 +10,7 @@ export const CustomersScreen = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     customersRefetch();
-  }, [customersRefetch]);
+  }, [customers]);
 
   return (
     <Flex

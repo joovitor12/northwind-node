@@ -41,6 +41,8 @@ class ProductDTO {
         const {
             productId,
             productName,
+            suplierId,
+            categoryId,
             supplier,
             category,
             quantityPerUnit,
@@ -54,8 +56,8 @@ class ProductDTO {
         return new ProductDTO(
             productId,
             productName,
-            SupplierDTO.toSupplierDTO(supplier),
-            CategoryDTO.toCategoryDTO(category),
+            suplierId != null ? SupplierDTO.toSupplierDTO(supplier) : null,
+            categoryId != null ? CategoryDTO.toCategoryDTO(category) : null,
             quantityPerUnit,
             unitPrice,
             unitsInStock,
@@ -67,7 +69,7 @@ class ProductDTO {
 
     static manyToProductDTO(productsModel) {
         const productsDTO = [];
-        for(let iterator = 0; iterator < productsModel.length; iterator++) {
+        for (let iterator = 0; iterator < productsModel.length; iterator++) {
             productsDTO.push(ProductDTO.toProductDTO(productsModel[iterator]));
         }
 

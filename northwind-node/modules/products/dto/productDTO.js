@@ -41,7 +41,7 @@ class ProductDTO {
         const {
             productId,
             productName,
-            suplierId,
+            supplierId,
             categoryId,
             supplier,
             category,
@@ -56,7 +56,7 @@ class ProductDTO {
         return new ProductDTO(
             productId,
             productName,
-            suplierId != null ? SupplierDTO.toSupplierDTO(supplier) : null,
+            supplierId != null ? SupplierDTO.toSupplierDTO(supplier) : null,
             categoryId != null ? CategoryDTO.toCategoryDTO(category) : null,
             quantityPerUnit,
             unitPrice,

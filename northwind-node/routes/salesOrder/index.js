@@ -19,6 +19,11 @@ class SalesOrderRouter {
             return response.json(salesOrders)
         });
 
+        this.routes.get('/order-details-customer/:id', async (request, response) => {
+            const {id} = request.params;
+            const salesOrders = await this.salesOrderController.findAllOrderDetails(id);
+            return response.json(salesOrders)
+        });
     }
 
     getRoutes() {

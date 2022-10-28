@@ -64,7 +64,7 @@ class OrderDetail {
 
         this._orderDetailModel.belongsTo(this._salesOrderModel, {
             constraints: true,
-            foreignKey: 'salesOrderId',
+            foreignKey: 'orderId',
         });
 
         return this._orderDetailModel;

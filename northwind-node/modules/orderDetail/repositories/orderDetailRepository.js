@@ -15,6 +15,20 @@ class OrderDetailRepository extends Repository {
         this.productModel = productModel.createModel(connection);
     }
 
+    async findAllById(id) {
+        const orderDetails = await this.repository.findAll({
+            where: {
+                orderId: id
+            },
+            include: [
+                this.salesOrderModel,
+                this.productModel
+            ]
+        });
+
+        return orderDetails;
+    }
+
     createManyOrderDetails(createManyOrderDetailDTO) {
         return Promise.all(createManyOrderDetailDTO.product.map(this.createOrder(createManyOrderDetailDTO)))
     }

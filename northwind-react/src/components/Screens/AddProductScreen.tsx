@@ -25,7 +25,8 @@ export const AddProductScreen = () => {
   const submitProductForm = async (data: ProductProps) => {
     await createProductMutation({
       productName: data.productName,
-      quantityPerUnit: data.quantityPerUnit,
+      supplierId: null,
+      categoryId: null,
       unitPrice: data.unitPrice,
       unitsInStock: data.unitsInStock,
       unitsOnOrder: data.unitsOnOrder,
@@ -76,13 +77,6 @@ export const AddProductScreen = () => {
           color="white"
         />
         <InputForm
-          register={register("quantityPerUnit")}
-          error={errors.quantityPerUnit}
-          placeholder="Quantity Per Unit"
-          type="text"
-          color="white"
-        />
-        <InputForm
           register={register("unitPrice")}
           error={errors.unitPrice}
           placeholder="Unit Price"
@@ -99,14 +93,14 @@ export const AddProductScreen = () => {
         <InputForm
           register={register("unitsOnOrder")}
           error={errors.unitsOnOrder}
-          placeholder="Unit Price"
+          placeholder="Units On Order"
           type="text"
           color="white"
         />
         <InputForm
           register={register("reorderLevel")}
           error={errors.reorderLevel}
-          placeholder="Unit Price"
+          placeholder="Reorder Level"
           type="text"
           color="white"
         />

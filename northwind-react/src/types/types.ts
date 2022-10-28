@@ -5,7 +5,8 @@ export type ProductProps = {
   discontinued: string;
   productId?: number;
   productName: string;
-  quantityPerUnit?: string | number | null;
+  categoryId?: string | number | null;
+  supplierId?: string | number | null;
   reorderLevel?: string | number | null;
   unitPrice: string;
   unitsInStock?: string | number | null;
@@ -32,3 +33,39 @@ export type InputFormProps = {
   placeholder?: string;
   type: string;
 } & ChakraProps;
+
+export type OrderProps = {
+  orderId?: number | string;
+  custId?: number | string;
+  employeeId?: string | null | number;
+  quantity?: number | string;
+  orderDate?: number;
+  date?: string | Date | null;
+  requiredDate?: string | Date | null;
+  orderRequiredDate?: string | Date | null;
+  shippedDate?: string | Date | null;
+  product?: ProductProps;
+  products?: ProductProps[];
+  shipperId?: {
+    shipperId: number;
+    companyName: string;
+    phone: string;
+  } | number;
+  ship?: {
+    shipName: string,
+    shipAddress: string,
+    shipCity: string,
+    shipRegion: string,
+    shipPostalCode: string,
+    shipCountry: string,
+  },
+  freight?: number | string;
+  shipName?: string | null;
+  shipAddress?: string;
+  shipCity?: string;
+  shipRegion?: string;
+  shipPostalCode?: string;
+  shipCountry?: string;
+  discount?: number;
+  unitPrice? : string | number;
+};

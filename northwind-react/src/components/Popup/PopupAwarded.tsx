@@ -20,7 +20,7 @@ export const PopupAwarded = () => {
         <ModalCloseButton color="brand.700" />
         <ModalBody display="flex" justifyContent="center" alignItems="center">
           <Text textAlign="center" color="brand.700" fontSize="xl">
-            For every ten purchases, the tenth purchase will be free shipping!
+            For every two purchases, the second purchase will be free shipping!
             &#x1F525;
           </Text>
         </ModalBody>

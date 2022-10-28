@@ -1,19 +1,16 @@
 import { Flex, Heading } from "@chakra-ui/react";
 import { useEffect } from "react";
-
-import { useGetProducts } from "../../configs";
-
+import { useGetOrders } from "../../configs";
 import { Navbar } from "../Navbar";
-import { PopupAwarded } from "../Popup";
-import { ProductCard } from "../ProductCard";
+import { OrderCard } from "../OrderCard";
 
-export const ProductScreen = () => {
-  const { data: products, refetch: refetchProducts } = useGetProducts();
+export const OrdersScreen = () => {
+  const { data: orders, refetch: refetchOrders } = useGetOrders();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    refetchProducts();
-  }, [products]);
+    refetchOrders();
+  }, [orders]);
 
   return (
     <Flex
@@ -27,9 +24,8 @@ export const ProductScreen = () => {
     >
       <Navbar />
       <Heading color="brand.700" m="1rem">
-        Products
+        Orders
       </Heading>
-      <PopupAwarded />
       <Flex
         minH="100%"
         h="auto"
@@ -38,8 +34,8 @@ export const ProductScreen = () => {
         align="center"
         flexWrap="wrap"
       >
-        {products?.map((product) => (
-          <ProductCard product={product} key={product.productId} />
+        {orders?.map((order) => (
+          <OrderCard order={order} key={order.orderId} />
         ))}
       </Flex>
     </Flex>

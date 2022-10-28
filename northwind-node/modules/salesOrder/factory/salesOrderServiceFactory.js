@@ -4,9 +4,14 @@ const SalesOrderController = require('../controllers/salesOrderController');
 const Customer = require('../../../models/customers');
 const Employee = require('../../../models/employee');
 const Shipper = require('../../../models/shipper');
+const SalesOrder = require('../../../models/salesOrder');
+const Product = require('../../../models/product');
 
-const OrderDetailRepository = require('../repositories/orderDetailRepository')
+const OrderDetailRepository = require('../../orderDetail/repositories/orderDetailRepository')
+
 const FindSalesOrderUseCase = require('../useCases/findSalesOrderUseCase');
+const CreateSalesOrderUseCase = require('../useCases/createSalesOrderUseCase');
+const CreateManyOrderDetailUseCase = require('../../orderDetail/useCases/createManyOrderDetailsUseCase');
 
 class SalesOrderServiceFactory {
 
@@ -17,20 +22,20 @@ class SalesOrderServiceFactory {
             new Employee(),
             new Shipper()
         );
+
+        this.orderDetailRepository = new OrderDetailRepository(
+            connection,
+            new SalesOrder(),
+            new Product()
+        )
     }
 
     createSalesOrderController() {
         return new SalesOrderController(
-            new FindSalesOrderUseCase(this.salesOrderRepository)
+            new FindSalesOrderUseCase(this.salesOrderRepository),
+            new CreateSalesOrderUseCase(this.salesOrderRepository,
+                new CreateManyOrderDetailUseCase(this.orderDetailRepository))
         );
-    }
-
-    async createManyOrderDetails(custId, products, date, orderRequiredDate) {
-        const products = []
-        for (let i = 0; i < products.length; i++) {
-            await products.push(await this.OrderDetailRepository.save(custId, products[i], date, orderRequiredDate))
-        }
-        return products
     }
 }
 

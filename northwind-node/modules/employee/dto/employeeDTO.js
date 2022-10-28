@@ -86,7 +86,7 @@ class EmployeeDTO {
             notes,
             mgrId,
             photoPath
-        } = employeeModel.dataValues;
+        } = employeeModel;
 
         return new EmployeeDTO(
             employeeId,

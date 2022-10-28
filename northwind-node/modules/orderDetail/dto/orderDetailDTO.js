@@ -4,7 +4,9 @@ const SalesOrderDTO = require('../../salesOrder/dto/salesOrderDTO');
 class OrderDetailDTO {
     orderDetailId;
     orderId;
+    order;
     productId;
+    product;
     unitPrice;
     quantity;
     discount;
@@ -12,24 +14,28 @@ class OrderDetailDTO {
     constructor(
         orderDetailId,
         orderId,
+        order,
         productId,
+        product,
         unitPrice,
         quantity,
         discount,
     ) {
         this.orderDetailId = orderDetailId;
         this.orderId = orderId;
+        this.order = order;
         this.productId = productId;
-        this.employeeId = employeeId;
+        this.product = product;
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.discount = discount;
-        this.shipperId = shipperId;
     }
 
     static toOrderDetailDTO(orderDetailModel) {
         const {
             orderDetailId,
+            orderId,
+            productId,
             order,
             product,
             unitPrice,
@@ -39,8 +45,10 @@ class OrderDetailDTO {
 
         return new OrderDetailDTO(
             orderDetailId,
-            SalesOrderDTO.toSalesOrderDTO(order),
-            ProductDTO.toProductDTO(product),
+            orderId != null ? orderId : null,
+            productId != null ? productId : null,
+            order != null ? SalesOrderDTO.toSalesOrderDTO(order) : null,
+            product != null ? ProductDTO.toProductDTO(product) : null,
             unitPrice,
             quantity,
             discount,

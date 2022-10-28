@@ -9,11 +9,25 @@ class OrderDetailRepository extends Repository {
         const orderDetailModel = new OrderDetail();
         orderDetailModel.createModel(connection);
         super(orderDetailModel);
-
         this.repository = orderDetailModel.getModel();
 
         this.salesOrderModel = salesOrderModel.createModel(connection);
         this.productModel = productModel.createModel(connection);
+    }
+
+    createManyOrderDetails(createManyOrderDetailDTO) {
+        return Promise.all(createManyOrderDetailDTO.product.map(this.createOrder(createManyOrderDetailDTO)))
+    }
+
+    createOrder(createManyOrderDetailDTO) {
+        return (product) => {
+            return this.repository.create({
+                ...createManyOrderDetailDTO,
+                productId: product.productId,
+                unitPrice: product.unitPrice,
+                quantity: product.quantity
+            });
+        }
     }
 }
 

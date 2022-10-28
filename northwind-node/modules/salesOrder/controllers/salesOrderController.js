@@ -3,12 +3,12 @@ class SalesOrderController {
     constructor(
         findSalesOrdersUseCase,
         // findSalesOrderUseCase,
-        // createSalesOrderUseCase,
+        createSalesOrderUseCase,
         // deleteSalesOrderUseCase,
     ) {
         this.findSalesOrdersUseCase = findSalesOrdersUseCase;
         // this.findSalesOrderUseCase = findSalesOrderUseCase;
-        // this.createSalesOrderUseCase = createSalesOrderUseCase;
+        this.createSalesOrderUseCase = createSalesOrderUseCase;
         // this.deleteSalesOrderUseCase = deleteSalesOrderUseCase;
     }
 
@@ -16,9 +16,9 @@ class SalesOrderController {
         return await this.findSalesOrdersUseCase.execute();
     }
 
-    // async create(salesOrder) {
-    //     return await this.createSalesOrderUseCase.execute(salesOrder);
-    // }
+    async create(salesOrder) {
+        return await this.createSalesOrderUseCase.execute(salesOrder);
+    }
     //
     // async findOne(id) {
     //     return await this.findSalesOrderUseCase.execute(id);

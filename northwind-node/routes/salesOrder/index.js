@@ -14,6 +14,11 @@ class SalesOrderRouter {
             return response.json(salesOrders)
         });
 
+        this.routes.post('/', async (request, response) => {
+            const salesOrders = await this.salesOrderController.create(request.body);
+            return response.json(salesOrders)
+        });
+
     }
 
     getRoutes() {

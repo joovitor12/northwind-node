@@ -1,4 +1,12 @@
-import { Flex, Icon, Link, Text } from "@chakra-ui/react";
+import {
+  Flex,
+  Icon,
+  Link,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
 import { ImDatabase } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
 
@@ -16,35 +24,54 @@ export const Navbar = () => {
       align="center"
       p="0 2rem"
     >
-      <Flex color="brand.700" w="35rem" justify="space-between" align="center">
+      <Flex color="brand.700" w="7rem" justify="space-between" align="center">
         <Icon as={ImDatabase} fontSize="4xl" />
-        <Link
-          fontWeight="bold"
-          _hover={{}}
-          onClick={() => navigate("/add-product")}
-        >
-          Add Product
-        </Link>
-        <Link fontWeight="bold" _hover={{}} onClick={() => navigate("/")}>
-          Products
-        </Link>
-        <Link
-          fontWeight="bold"
-          _hover={{}}
-          onClick={() => navigate("/add-customer")}
-        >
-          Add Customer
-        </Link>
-        <Link
-          fontWeight="bold"
-          _hover={{}}
-          onClick={() => navigate("/customers")}
-        >
-          Customers
-        </Link>
-        <Link fontWeight="bold" _hover={{}} onClick={() => navigate("/orders")}>
-          Orders
-        </Link>
+        <Menu>
+          <MenuButton as="button">Menu</MenuButton>
+          <MenuList bg="brand.900" borderColor="brand.700">
+            <MenuItem>
+              <Link
+                fontWeight="bold"
+                _hover={{}}
+                onClick={() => navigate("/add-product")}
+              >
+                Add Product
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link fontWeight="bold" _hover={{}} onClick={() => navigate("/")}>
+                Products
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link
+                fontWeight="bold"
+                _hover={{}}
+                onClick={() => navigate("/add-customer")}
+              >
+                Add Customer
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link
+                fontWeight="bold"
+                _hover={{}}
+                onClick={() => navigate("/customers")}
+              >
+                Customers
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link
+                fontWeight="bold"
+                _hover={{}}
+                onClick={() => navigate("/orders")}
+              >
+                Orders
+              </Link>
+            </MenuItem>
+          </MenuList>
+        </Menu>
       </Flex>
       <Cart />
     </Flex>

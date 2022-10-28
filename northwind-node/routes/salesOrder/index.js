@@ -24,6 +24,12 @@ class SalesOrderRouter {
             const salesOrders = await this.salesOrderController.findAllOrderDetails(id);
             return response.json(salesOrders)
         });
+
+        this.routes.get('/relatory/:shipperId', async (request, response) => {
+            const {shipperId} = request.params;
+            const salesOrders = await this.salesOrderController.generateRelatory(shipperId);
+            return response.json(salesOrders)
+        });
     }
 
     getRoutes() {

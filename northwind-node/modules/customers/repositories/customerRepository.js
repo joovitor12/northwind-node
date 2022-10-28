@@ -11,10 +11,6 @@ class CustomersRepository extends Repository {
         this.repository = customerModel.getModel();
     }
 
-    async findByCountry(country) {
-        return await this.repository.sequelize.query(`call nome_procedimento(\"${country}\")`);
-    }
-
     async findOne(id) {
         return await this.repository.findByPk(id);
     }

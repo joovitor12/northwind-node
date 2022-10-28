@@ -14,7 +14,10 @@ class SalesOrderRepository extends Repository {
         this.customerModel = customerModel.createModel(connection);
         this.employeeModel = employeeModel.createModel(connection);
         this.shipperModel = shipperModel.createModel(connection);
+    }
 
+    async generateRelatory(shipperId) {
+        return await this.repository.sequelize.query(`call SP_SHIPPER_SELLS_RELATORIO(\"${shipperId}\")`);
     }
 
     async findWithRelations() {

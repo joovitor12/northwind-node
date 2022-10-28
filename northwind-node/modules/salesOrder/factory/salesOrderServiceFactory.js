@@ -13,6 +13,7 @@ const FindSalesOrderUseCase = require('../useCases/findSalesOrderUseCase');
 const CreateSalesOrderUseCase = require('../useCases/createSalesOrderUseCase');
 const CreateManyOrderDetailUseCase = require('../../orderDetail/useCases/createManyOrderDetailsUseCase');
 const FindOrderDetailsUseCase = require('../../orderDetail/useCases/findOrderDetailsUseCase');
+const GenerateRelatoryUseCase = require('../useCases/generateRelatoryUseCase');
 
 class SalesOrderServiceFactory {
 
@@ -36,7 +37,8 @@ class SalesOrderServiceFactory {
             new FindSalesOrderUseCase(this.salesOrderRepository),
             new FindOrderDetailsUseCase(this.orderDetailRepository),
             new CreateSalesOrderUseCase(this.salesOrderRepository,
-                new CreateManyOrderDetailUseCase(this.orderDetailRepository))
+                new CreateManyOrderDetailUseCase(this.orderDetailRepository)),
+            new GenerateRelatoryUseCase(this.salesOrderRepository)
         );
     }
 }

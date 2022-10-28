@@ -1,6 +1,8 @@
 import { CustomerProps, ProductProps } from "../../types";
 import { api } from "../database";
 
+const baseUrlOrders = "/order";
+
 export const postProduct = async (data: ProductProps): Promise<void> => {
   const response = await api.post("/product", data);
   return response.data;
@@ -43,16 +45,25 @@ export const deleteCustomer = async ({ id }: { id: number }): Promise<void> => {
 };
 
 export const postOrder = async (data: any): Promise<void> => {
-  const response = await api.post("/order", data);
+  const response = await api.post(baseUrlOrders, data);
   return response.data;
 };
 
 export const getOrders = async (): Promise<void> => {
-  const response = await api.get("/order");
+  const response = await api.get(baseUrlOrders);
   return response.data;
 };
 
 export const getOrderDetail = async ({ id }: { id: number }): Promise<void> => {
-  const response = await api.get(`/order/order-details-customer/${id}`);
+  const response = await api.get(
+    `${baseUrlOrders}/order-details-customer/${id}`
+  );
+  return response.data;
+};
+
+export const getOrderReport = async ({ shipperId }: { shipperId: number }): Promise<void> => {
+  const response = await api.get(
+    `${baseUrlOrders}/relatory/${shipperId}`
+  );
   return response.data;
 };

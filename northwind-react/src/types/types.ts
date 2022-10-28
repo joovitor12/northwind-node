@@ -28,10 +28,11 @@ export type CustomerProps = {
 };
 
 export type InputFormProps = {
-  register: UseFormRegisterReturn<string>;
+  register?: UseFormRegisterReturn<string>;
   error?: FieldErrors | any;
   placeholder?: string;
   type: string;
+  onChange?: (e: any) => void;
 } & ChakraProps;
 
 export type OrderProps = {
@@ -46,19 +47,21 @@ export type OrderProps = {
   shippedDate?: string | Date | null;
   product?: ProductProps;
   products?: ProductProps[];
-  shipperId?: {
-    shipperId: number;
-    companyName: string;
-    phone: string;
-  } | number;
+  shipperId?:
+    | {
+        shipperId: number;
+        companyName: string;
+        phone: string;
+      }
+    | number;
   ship?: {
-    shipName: string,
-    shipAddress: string,
-    shipCity: string,
-    shipRegion: string,
-    shipPostalCode: string,
-    shipCountry: string,
-  },
+    shipName: string;
+    shipAddress: string;
+    shipCity: string;
+    shipRegion: string;
+    shipPostalCode: string;
+    shipCountry: string;
+  };
   freight?: number | string;
   shipName?: string | null;
   shipAddress?: string;
@@ -67,5 +70,7 @@ export type OrderProps = {
   shipPostalCode?: string;
   shipCountry?: string;
   discount?: number;
-  unitPrice? : string | number;
+  unitPrice?: string | number;
+  shipperSells?: string | number;
+  companyName?: string;
 };

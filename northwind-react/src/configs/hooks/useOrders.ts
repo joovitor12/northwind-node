@@ -6,7 +6,7 @@ import {
   UseQueryOptions,
 } from "react-query";
 import { OrderProps } from "../../types";
-import { getOrderDetail, getOrders, postOrder } from "../requests";
+import { getOrderDetail, getOrderReport, getOrders, postOrder } from "../requests";
 
 type UseCreateOrderProps = {
   createOrderMutation: UseMutateAsyncFunction<void, unknown, OrderProps, unknown>;
@@ -14,12 +14,17 @@ type UseCreateOrderProps = {
 };
 
 type UseGetOrdersProps = {
-  config?: UseQueryOptions<any, unknown, OrderProps[], "orders">;
+  config?: UseQueryOptions<void, unknown, OrderProps[], "orders">;
 };
 
-type UseGetOrderDetails = {
-  config?: UseQueryOptions<any, unknown, OrderProps[], "order-details">;
+type UseGetOrderDetailsProps = {
+  config?: UseQueryOptions<void, unknown, OrderProps[], "order-details">;
   id: number;
+};
+
+type UseGetOrderReportProps = {
+  config?: UseQueryOptions<void, unknown, OrderProps[], any>;
+  shipperId: number;
 };
 
 export const useCreateOrder = (): UseCreateOrderProps => {
@@ -52,6 +57,10 @@ export const useGetOrders = ({ config }: UseGetOrdersProps = {}) => {
   return useQuery("orders", getOrders, config);
 };
 
-export const useGetOrderDetails = ({ config, id }: UseGetOrderDetails) => {
+export const useGetOrderDetails = ({ config, id }: UseGetOrderDetailsProps) => {
   return useQuery("order-details", () => getOrderDetail({ id }), config);
+};
+
+export const useGetOrdersReport = ({ config, shipperId }: UseGetOrderReportProps) => {
+  return useQuery(["order-reports", shipperId], () => getOrderReport({ shipperId }), config);
 };

@@ -7,6 +7,7 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Text,
@@ -14,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { BsFillBasket3Fill } from "react-icons/bs";
 import { useGetOrderDetails } from "../../configs";
+import { PopupReportsOrder } from "./PopupReportsOrder";
 
 export const PopupInfosOrder = ({
   orderId,
@@ -68,6 +70,14 @@ export const PopupInfosOrder = ({
               ))}
             </Flex>
           </ModalBody>
+          <ModalFooter
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+          >
+            <PopupReportsOrder />
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </>

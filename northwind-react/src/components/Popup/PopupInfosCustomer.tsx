@@ -59,7 +59,7 @@ export const PopupInfosCustomer = ({
               <Text>Contact Title: {customer.contactTitle || "No data"}</Text>
               <Text>Address: {customer.address || "No data"}</Text>
               <Text>City: {customer.city || "No data"}</Text>
-              <Text>Country{customer.country || "No data"}</Text>
+              <Text>Country: {customer.country || "No data"}</Text>
               <Text>Region: {customer.region || "No data"}</Text>
               <Text>Phone: {customer.phone || "No data"}</Text>
               <Text>Fax: {customer.fax || "No data"}</Text>

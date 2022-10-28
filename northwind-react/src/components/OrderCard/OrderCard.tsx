@@ -26,7 +26,7 @@ export const OrderCard = ({ order }: { order: OrderProps }) => {
         textAlign="center"
         noOfLines={2}
       >
-        Order Ship Name: {order.shipName}
+        Order Ship ID: {order.custId}
       </Text>
       <Text
         fontWeight="bold"

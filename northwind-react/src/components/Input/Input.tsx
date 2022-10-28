@@ -6,6 +6,7 @@ export const InputForm: React.FC<InputFormProps> = ({
   error,
   placeholder,
   type,
+  onChange,
   ...rest
 }) => {
   return (
@@ -25,6 +26,7 @@ export const InputForm: React.FC<InputFormProps> = ({
           _hover={{ borderColor: "brand.700" }}
           _focus={{ borderColor: "brand.700" }}
           {...register}
+          onChange={onChange}
         />
       </InputGroup>
       <Flex w="50%" align="left">

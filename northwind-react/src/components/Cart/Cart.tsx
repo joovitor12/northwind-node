@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Drawer,
   DrawerBody,
@@ -16,18 +15,51 @@ import {
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { BsCart4 } from "react-icons/bs";
-import { useCart, useGetCustomers } from "../../configs";
-import { CustomerProps, ProductProps } from "../../types";
+import { useNavigate } from "react-router-dom";
+
+import {
+  useCart,
+  useCreateOrder,
+  useGetCustomers,
+  useGetOrders,
+} from "../../configs";
+
+import { ProductProps } from "../../types";
 import { CartProduct } from "../CartProduct";
 
 export const Cart = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
+  const navigate = useNavigate();
 
   const { contentCart, setContentCart } = useCart();
   const { data: customers } = useGetCustomers();
+  const { createOrderMutation, createOrderLoading } = useCreateOrder();
 
   const [customer, setCustomer] = useState("");
+
+  const handleFinishOrder = () => {
+    createOrderMutation({
+      custId: customer,
+      products: contentCart,
+      date: new Date().toISOString(),
+      orderRequiredDate: new Date().toISOString(),
+      shipperId: 1,
+      ship: {
+        shipName: "Davi",
+        shipAddress: "Madalena",
+        shipCity: "Recife",
+        shipRegion: "PE",
+        shipPostalCode: "50203405 ",
+        shipCountry: "Brasil",
+      },
+      shippedDate: null,
+      employeeId: 0,
+      freight: 20.5,
+      discount: 0.0,
+    });
+    navigate("/orders");
+  };
 
   return (
     <Flex>
@@ -77,7 +109,7 @@ export const Cart = () => {
                 Select the customer
               </option>
               {customers?.map((customer) => (
-                <option value={customer.companyName} key={customer.custId}>
+                <option value={customer.custId} key={customer.custId}>
                   {customer.companyName}
                 </option>
               ))}
@@ -105,7 +137,13 @@ export const Cart = () => {
             >
               Clear Cart
             </Button>
-            <Button bg="brand.700" color="brand.900" _hover={{}}>
+            <Button
+              bg="brand.700"
+              color="brand.900"
+              _hover={{}}
+              onClick={handleFinishOrder}
+              isLoading={createOrderLoading}
+            >
               Finish order
             </Button>
           </DrawerFooter>

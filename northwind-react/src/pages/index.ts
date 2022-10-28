@@ -3,4 +3,5 @@ export * from "./ProductsPage";
 export * from "./AddCustomerPage";
 export * from "./CustomersPage";
 export * from "./EditCustomerPage";
+export * from "./OrdersPage";
 

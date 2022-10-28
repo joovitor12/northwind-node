@@ -42,7 +42,17 @@ export const ProductCard = ({ product }: { product: ProductProps }) => {
           _hover={{ color: "brand.600" }}
           _active={{}}
           letterSpacing={0.8}
-          onClick={() => setContentCart([...contentCart, product])}
+          onClick={() =>
+            setContentCart([
+              ...contentCart,
+              {
+                productName: product.productName,
+                productId: product.productId,
+                unitPrice: product.unitPrice,
+                quantity: 1,
+              },
+            ])
+          }
           rightIcon={
             <Icon as={BsFillPlusCircleFill} color="brand.400" fontSize="2xl" />
           }

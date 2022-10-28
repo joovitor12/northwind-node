@@ -1,20 +1,16 @@
 const {DataTypes} = require('sequelize');
+const Supplier = require('./supplier');
+const Category = require('./category');
 
 class Product {
-    _productmModel;
-    connection;
-
-    constructor(connection) {
-        this.connection = connection;
-        this.createModel();
-    }
+    _productModel;
 
     getModel() {
-        return this._productmModel;
+        return this._productModel;
     }
 
-    createModel() {
-        this._productmModel = this.connection
+    createModel(connection) {
+        this._productModel = connection
             .define(
                 'product',
                 {
@@ -71,8 +67,33 @@ class Product {
                     createdAt: false,
                     updatedAt: false,
                 }
-            )
-        ;
+            );
+
+        const supplier = new Supplier();
+        this._supplierModel = supplier.createModel(connection);
+
+        const category = new Category();
+        this._categoryModel = category.createModel(connection);
+
+        this._productModel.belongsTo(this._supplierModel, {
+            constraints: true,
+            foreignKey: 'supplierId',
+        });
+
+        this._supplierModel.hasMany(this._productModel, {
+            foreignKey: 'supplierId',
+        });
+
+        this._productModel.belongsTo(this._categoryModel, {
+            constraints: true,
+            foreignKey: 'categoryId',
+        });
+
+        this._categoryModel.hasMany(this._productModel, {
+            foreignKey: 'categoryId',
+        });
+
+        return this._productModel;
     }
 }
 

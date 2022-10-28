@@ -42,7 +42,7 @@ export const Navbar = () => {
         >
           Customers
         </Link>
-        <Link fontWeight="bold" _hover={{}} onClick={() => navigate("/")}>
+        <Link fontWeight="bold" _hover={{}} onClick={() => navigate("/orders")}>
           Orders
         </Link>
       </Flex>

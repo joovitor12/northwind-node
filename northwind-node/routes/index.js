@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const ProductRouter = require('./product');
 const CustomerRouter = require('./customer');
+const SalesOrderRouter = require('./salesOrder');
 
 class AppRouter {
 
@@ -17,6 +18,7 @@ class AppRouter {
     createRoutes() {
         this.createProductRouter();
         this.createCustomerRouter();
+        this.createSalesOrderRouter();
     }
 
     createProductRouter() {
@@ -27,6 +29,11 @@ class AppRouter {
     createCustomerRouter() {
         const customerRouter = new CustomerRouter(this.database);
         this.routes.use('/customer', customerRouter.getRoutes())
+    }
+
+    createSalesOrderRouter() {
+        const salesOrderRouter = new SalesOrderRouter(this.database);
+        this.routes.use('/order', salesOrderRouter.getRoutes())
     }
 
     getRoutes() {

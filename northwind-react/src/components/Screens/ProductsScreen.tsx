@@ -1,15 +1,19 @@
 import { Flex, Heading } from "@chakra-ui/react";
 import { useEffect } from "react";
+
 import { useGetProducts } from "../../configs";
+
 import { Navbar } from "../Navbar";
+import { PopupAwarded } from "../Popup";
 import { ProductCard } from "../ProductCard";
 
 export const ProductScreen = () => {
   const { data: products, refetch: refetchProducts } = useGetProducts();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     refetchProducts();
-  }, [refetchProducts]);
+  }, [products]);
 
   return (
     <Flex
@@ -25,6 +29,7 @@ export const ProductScreen = () => {
       <Heading color="brand.700" m="1rem">
         Products
       </Heading>
+      <PopupAwarded />
       <Flex
         minH="100%"
         h="auto"

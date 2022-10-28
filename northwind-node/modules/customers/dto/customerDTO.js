@@ -66,13 +66,13 @@ class CustomerDTO {
             fax)
     }
 
-    static manyToCustomerDTO(productsModel) {
+    static manyToCustomerDTO(customerModel) {
         const productsDTO = [];
-        for (let iterator = 0; iterator < productsModel.length; iterator++) {
-            productsDTO.push(CustomerDTO.toCustomerDTO(productsModel[iterator]));
+        for (let iterator = 0; iterator < customerModel.length; iterator++) {
+            productsDTO.push(CustomerDTO.toCustomerDTO(customerModel[iterator]));
         }
 
-        console.log(productsModel);
+        console.log(customerModel);
         return productsDTO;
     }
 }

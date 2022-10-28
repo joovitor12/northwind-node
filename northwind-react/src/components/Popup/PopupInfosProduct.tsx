@@ -40,9 +40,6 @@ export const PopupInfosProduct = ({ product }: { product: ProductProps }) => {
             >
               <Icon as={RiStarSmileFill} color="brand.700" fontSize="4xl" />
               <Text>Product Name: {product.productName || "No data"}</Text>
-              <Text>
-                Quantity Per Unit: {product.quantityPerUnit || "No data"}
-              </Text>
               <Text>Reorder Level: {product.reorderLevel || "No data"}</Text>
               <Text>Unit Price: {product.unitPrice || "No data"} $</Text>
               <Text>Units On Order: {product.unitsOnOrder || "No data"}</Text>

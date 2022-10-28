@@ -17,12 +17,7 @@ import { useRef, useState } from "react";
 import { BsCart4 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
-import {
-  useCart,
-  useCreateOrder,
-  useGetCustomers,
-  useGetOrders,
-} from "../../configs";
+import { useCart, useCreateOrder, useGetCustomers } from "../../configs";
 
 import { ProductProps } from "../../types";
 import { CartProduct } from "../CartProduct";
@@ -58,6 +53,7 @@ export const Cart = () => {
       freight: 20.5,
       discount: 0.0,
     });
+    setContentCart([]);
     navigate("/orders");
   };
 

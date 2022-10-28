@@ -1,20 +1,14 @@
-const { DataTypes } = require('sequelize')
+const {DataTypes} = require('sequelize')
 
 class Supplier {
     _supplierModel
-    connection
-
-    constructor(connection) {
-        this.connection = connection;
-        this.createModel();
-    }
 
     getModel() {
         return this._supplierModel
     }
 
-    createModel() {
-        this._supplierModel = this.connection
+    createModel(connection) {
+        this._supplierModel = connection
             .define(
                 'supplier', {
                     supplierId: {
@@ -77,7 +71,7 @@ class Supplier {
                         allowNull: false,
                         range: 40,
                     },
-                    HomePage: {
+                    homePage: {
                         type: DataTypes.STRING,
                         allowNull: false,
                         range: 40,
@@ -87,7 +81,9 @@ class Supplier {
                     createdAt: false,
                     updatedAt: false
                 }
-            )
+            );
+
+            return this._supplierModel;
     }
 }
 

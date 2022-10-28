@@ -1,3 +1,6 @@
+const SupplierDTO = require('../../supplier/DTO/supplierDTO');
+const CategoryDTO = require('../../category/DTO/categoryDTO');
+
 class ProductDTO {
     productId;
     productName;
@@ -38,6 +41,8 @@ class ProductDTO {
         const {
             productId,
             productName,
+            supplierId,
+            categoryId,
             supplier,
             category,
             quantityPerUnit,
@@ -46,13 +51,13 @@ class ProductDTO {
             unitsOnOrder,
             reorderLevel,
             discontinued
-        } = productModel.dataValues;
+        } = productModel;
 
         return new ProductDTO(
             productId,
             productName,
-            supplier,
-            category,
+            supplierId != null ? SupplierDTO.toSupplierDTO(supplier) : null,
+            categoryId != null ? CategoryDTO.toCategoryDTO(category) : null,
             quantityPerUnit,
             unitPrice,
             unitsInStock,
@@ -64,7 +69,7 @@ class ProductDTO {
 
     static manyToProductDTO(productsModel) {
         const productsDTO = [];
-        for(let iterator = 0; iterator < productsModel.length; iterator++) {
+        for (let iterator = 0; iterator < productsModel.length; iterator++) {
             productsDTO.push(ProductDTO.toProductDTO(productsModel[iterator]));
         }
 

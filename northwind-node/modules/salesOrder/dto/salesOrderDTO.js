@@ -53,12 +53,10 @@ class SalesOrderDTO {
         const {
             orderId,
             custId,
-            employee,
             employeeId,
             orderDate,
             requiredDate,
             shippedDate,
-            shipper,
             shipperId,
             freight,
             shipName,
@@ -72,20 +70,18 @@ class SalesOrderDTO {
         return new SalesOrderDTO(
             orderId,
             custId,
-            employee != null ? EmployeeDTO.toEmployeeDTO(employee) : null,
             employeeId != null ? employeeId : null,
             orderDate,
             requiredDate,
-            shipper != null ? ShipperDTO.toShipperDTO(shipper) : null,
-            shipperId != null ? shipperId : null,
             shippedDate,
+            shipperId != null ? shipperId : null,
             freight,
             shipName,
             shipAddress,
             shipCity,
             shipRegion,
             shipPostalCode,
-            shipCountry
+            shipCountry,
         )
     }
 

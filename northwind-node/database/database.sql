@@ -172,3 +172,10 @@ CREATE TABLE OrderDetail (
        ,FOREIGN KEY (productId)
       REFERENCES Product(productId)
   ) ENGINE=INNODB;
+
+CREATE PROCEDURE SP_SHIPPER_SELLS_RELATORIO(shipperId int)
+BEGIN
+    SELECT count(*) as shipperSells, s.companyName FROM salesorder so join shipper s on s.shipperId = so.shipperId where so.shipperId = shipperId;
+end;
+INSERT INTO Shipper(shipperid, companyname, phone)
+VALUES (1, N'Shipper GVSUA', N'(503) 555-0137');

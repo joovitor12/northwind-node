@@ -112,6 +112,18 @@ class SalesOrder {
             foreignKey: 'shipperId',
         });
 
+        this._salesOrderModel.addHook("beforeCreate", async (salesOrder, options) => {
+            const salesOrderByCustomer = await this._salesOrderModel.findAll({
+                where: {
+                    custId: salesOrder.custId
+                }
+            });
+
+            if (salesOrderByCustomer.length % 2) {
+                salesOrder.freight = 0.0;
+            }
+        });
+
         return this._salesOrderModel;
     }
 }
